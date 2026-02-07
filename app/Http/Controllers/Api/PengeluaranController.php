@@ -31,6 +31,10 @@ class PengeluaranController extends Controller
             ]);
 
             foreach ($request->items as $item) {
+                 $pengeluaran->PengeluaranDetail()->create([
+                    'item_id' => $item['item_id'],
+                    'qty' => $item['qty'],
+                ]);
                 // 2. Simpan Detail Mutasi
                 StockMutasi::create([
                     'pengeluaran_id' => $pengeluaran->id,
@@ -60,7 +64,7 @@ class PengeluaranController extends Controller
             return response()->json([
                 'status'  => 'success',
                 'message' => 'Pengeluaran barang berhasil dicatat',
-                'data'    => $pengeluaran
+                'data'    => $pengeluaran->load('PengeluaranDetail')
             ], 201);
         });
     }

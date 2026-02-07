@@ -18,7 +18,7 @@ class Penerimaan extends Model
         });
     }
     
-public function penerimaanDetails()
+public function PenerimaanDetail()
 {
     // Pastikan nama model detailnya benar (misal: PenerimaanDetail)
     return $this->hasMany(PenerimaanDetail::class, 'penerimaan_id');

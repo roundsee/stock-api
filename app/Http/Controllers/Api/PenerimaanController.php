@@ -27,11 +27,15 @@ class PenerimaanController extends Controller
             $penerimaan = Penerimaan::create([
                 'tgl_terima' => now(),
                 'gudang_id' => $request->gudang_id,
-                'user_id' => 1, // Sementara hardcode, nanti pakai auth()->id()
+                'user_id' => auth()->id(), // Sementara hardcode, nanti pakai auth()->id()
                 'supplier' => $request->supplier,
             ]);
 
             foreach ($request->items as $item) {
+                $penerimaan->PenerimaanDetail()->create([
+                    'item_id' => $item['item_id'],
+                    'qty' => $item['qty'],
+                ]);
                 // 2. Simpan ke Stock Mutasi (Detail)
                 StockMutasi::create([
                     'penerimaan_id' => $penerimaan->id,
@@ -61,7 +65,7 @@ class PenerimaanController extends Controller
 
             return response()->json([
                 'message' => 'Penerimaan berhasil disimpan',
-                'data' => $penerimaan->load('penerimaan_details') // Jika ada relasi
+                'data' => $penerimaan->load('PenerimaanDetail') // Jika ada relasi
             ], 201);
         });
     }
