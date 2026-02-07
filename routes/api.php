@@ -41,7 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/pengeluaran', [PengeluaranController::class, 'store']);     
 
    
-
+Route::get('/stock-logs', [StockReportController::class, 'StockLog']);
 Route::get('/stock-report', [StockReportController::class, 'index']);
 Route::get('/stock-history/{itemId}', [StockReportController::class, 'history']);
 

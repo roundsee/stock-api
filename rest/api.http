@@ -44,8 +44,8 @@ Content-Type: application/json
     "supplier": "PT Berkah Jaya",
     "items": [
         {
-            "item_id": 1,
-            "qty": 100
+            "item_id": 2,
+            "qty": 55
         }
     ]
 }
@@ -60,8 +60,8 @@ Accept: application/json
     "keterangan": "Pemakaian internal tim IT",
     "items": [
         {
-            "item_id": 1,
-            "qty": 2
+            "item_id": 2,
+            "qty": 1
         }
     ]
 }
@@ -83,3 +83,17 @@ Accept: application/json
 GET {{baseUrl}}/stock-history/1
 Authorization: Bearer {{token}}
 Accept: application/json
+
+
+### 8. Add item
+POST {{baseUrl}}/items
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+    "item_code": "BRG002",
+    "item_name": "Beras",
+    "item_type": "Produk",
+    "unit": "Kg"
+}
