@@ -1,0 +1,85 @@
+### Variabel Dasar
+@baseUrl = http://127.0.0.1:8000/api
+@token = {{login.response.body.access_token}}
+
+### 1. Login Admin (Ambil Token)
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "admin@stok.com",
+    "password": "admin123"
+}
+
+###
+
+### 2. Register Staff Baru (Harus Login)
+POST {{baseUrl}}/register-staff
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Budi Gudang",
+    "email": "budi@stok.com",
+    "password": "password123"
+}
+
+###
+
+### 3. Get Semua Item (Harus Login)
+GET {{baseUrl}}/items
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
+### 4. Simpan Penerimaan Barang
+POST {{baseUrl}}/penerimaan
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "gudang_id": 1,
+    "supplier": "PT Berkah Jaya",
+    "items": [
+        {
+            "item_id": 1,
+            "qty": 100
+        }
+    ]
+}
+### 5. Simpan Pengeluaran Barang
+POST {{baseUrl}}/pengeluaran
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+    "gudang_id": 1,
+    "keterangan": "Pemakaian internal tim IT",
+    "items": [
+        {
+            "item_id": 1,
+            "qty": 2
+        }
+    ]
+}
+###
+
+### 6. Cek Laporan Stok (Buku Stok)
+GET {{baseUrl}}/items/stock-report
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### 6. Lihat Ringkasan Stok (Semua Item)
+GET {{baseUrl}}/stock-report
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+
+### 7. Lihat Buku Stok Spesifik (Ganti 1 dengan ID Item)
+GET {{baseUrl}}/stock-history/1
+Authorization: Bearer {{token}}
+Accept: application/json
