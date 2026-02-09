@@ -46,6 +46,7 @@ public function stockReport()
             'id'            => $item->id,
             'item_code'     => $item->item_code,
             'item_name'     => $item->item_name,
+            'item_type'     => $item->item_type,
             'unit'          => $item->unit,
             'current_stock' => $lastLog ? (int)$lastLog->stok_akhir : 0,
             'last_update'   => $lastLog ? $lastLog->created_at->format('Y-m-d H:i') : '-',

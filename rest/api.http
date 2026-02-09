@@ -1,5 +1,6 @@
 ### Variabel Dasar
-@baseUrl = http://127.0.0.1:8000/api
+##@baseUrl = https://stock.asta-tbk.com/api
+@baseUrl = https://127.0.0.1:8000/api
 @token = {{login.response.body.access_token}}
 
 ### 1. Login Admin (Ambil Token)
@@ -97,3 +98,8 @@ Accept: application/json
     "item_type": "Produk",
     "unit": "Kg"
 }
+
+### 7. Lihat Buku Stok Spesifik (Ganti 1 dengan ID Item)
+GET {{baseUrl}}/stock-logs
+Authorization: Bearer {{token}}
+Accept: application/json
